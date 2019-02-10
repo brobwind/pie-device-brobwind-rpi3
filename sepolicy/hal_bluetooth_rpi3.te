@@ -1,0 +1,8 @@
+type hal_bluetooth_rpi3, domain;
+type hal_bluetooth_rpi3_exec, exec_type, file_type, vendor_file_type;
+
+hal_server_domain(hal_bluetooth_rpi3, hal_bluetooth)
+init_daemon_domain(hal_bluetooth_rpi3)
+
+allow hal_bluetooth_rpi3 self:socket { create bind read write };
+allow hal_bluetooth_rpi3 self:bluetooth_socket { create bind read write };

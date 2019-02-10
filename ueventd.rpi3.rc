@@ -1,0 +1,15 @@
+/dev/sw_sync                                                                 0666   system     graphics
+/dev/video*                                                                  0660   system     camera
+/dev/ttyAMA0                                                                 0660   bluetooth  bluetooth
+/dev/rfkill                                                                  0660   bluetooth  bluetooth
+
+# For Raspberry Pi 3 Model B bluetooth rfkill
+/sys/devices/platform/soc/3f201000.serial/tty/ttyAMA0/hci0/rfkill1  state    0660   bluetooth  bluetooth
+/sys/devices/platform/soc/3f201000.serial/tty/ttyAMA0/hci0/rfkill1  type     0440   bluetooth  bluetooth
+
+# For Raspberry Pi 3 Model B+ bluetooth rfkill
+/sys/devices/platform/soc/3f201000.serial/tty/ttyAMA0/hci1/rfkill2  state    0660   bluetooth  bluetooth
+/sys/devices/platform/soc/3f201000.serial/tty/ttyAMA0/hci1/rfkill2  type     0440   bluetooth  bluetooth
+
+# Storage: for factory reset protection feature
+/dev/block/platform/soc/3f202000.mmc/by-name/frp                             0660   system     system

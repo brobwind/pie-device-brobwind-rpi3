@@ -1,0 +1,14 @@
+#
+# Minimal /system/etc/mkshrc for Android
+#
+
+if (( USER_ID )); then PS1='$'; else PS1='#'; fi
+PS4='[$EPOCHREALTIME] '; PS1='${|
+	local e=$?
+
+	(( e )) && REPLY+="$e|"
+
+	return $e
+}$HOSTNAME:${PWD:-?} '"$PS1 "
+
+alias ls='ls --color=auto'

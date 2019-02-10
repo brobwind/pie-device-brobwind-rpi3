@@ -1,0 +1,53 @@
+
+# A/B partitions.
+/dev/block/platform/soc/3f202000\.mmc/by-name/system_[ab]           u:object_r:system_block_device:s0
+/dev/block/platform/soc/3f202000\.mmc/by-name/vendor_[ab]           u:object_r:system_block_device:s0
+/dev/block/platform/soc/3f202000\.mmc/by-name/vbmeta_[ab]           u:object_r:metadata_block_device:s0
+
+# Other, non-A/B partitions.
+/dev/block/platform/soc/3f202000\.mmc/by-name/frp                   u:object_r:frp_block_device:s0
+/dev/block/platform/soc/3f202000\.mmc/by-name/misc                  u:object_r:misc_block_device:s0
+/dev/block/platform/soc/3f202000\.mmc/by-name/swap                  u:object_r:swap_block_device:s0
+/dev/block/platform/soc/3f202000\.mmc/by-name/userdata              u:object_r:userdata_block_device:s0
+
+/dev/block/zram0                                                    u:object_r:swap_block_device:s0
+
+/dev/ttyAMA0                                                        u:object_r:hci_attach_dev:s0
+/dev/ttyS0                                                          u:object_r:console_device:s0
+
+# Graphic device
+/dev/dri(/.*)?                                                      u:object_r:gpu_device:s0
+/sys/devices/platform/soc/soc:gpu/uevent                            u:object_r:sysfs_gpu:s0
+
+/sys/class/rfkill/rfkill[0-9]/state                                 u:object_r:sysfs_bluetooth_writable:s0
+
+# Files in /vendor
+/vendor/bin/dhcpclient                                              u:object_r:dhcpclient_exec:s0
+/vendor/bin/dhcpserver                                              u:object_r:dhcpserver_exec:s0
+/vendor/bin/btuart                                                  u:object_r:hci_attach_exec:s0
+/vendor/bin/ipv6proxy                                               u:object_r:ipv6proxy_exec:s0
+
+/vendor/lib/libEGL_swiftshader\.so                                  u:object_r:same_process_hal_file:s0
+/vendor/lib/libGLESv1_CM_swiftshader\.so                            u:object_r:same_process_hal_file:s0
+/vendor/lib/libGLESv2_swiftshader\.so                               u:object_r:same_process_hal_file:s0
+
+/vendor/bin/hw/android\.hardware\.bluetooth@1\.0-service\.rpi3      u:object_r:hal_bluetooth_rpi3_exec:s0
+
+/vendor/lib/hw/bootctrl\.default\.so                                u:object_r:same_process_hal_file:s0
+/vendor/lib/hw/bootctrl\.bcb\.so                                    u:object_r:same_process_hal_file:s0
+/vendor/lib/hw/gralloc\.rpi3\.so                                    u:object_r:same_process_hal_file:s0
+/vendor/lib/hw/hwcomposer\.rpi3\.so                                 u:object_r:same_process_hal_file:s0
+
+# Vendor data
+/data/vendor/mediadrm(/.*)?                                         u:object_r:mediadrm_vendor_data_file:s0
+/data/vendor/var/run(/.*)?                                          u:object_r:varrun_file:s0
+
+/vendor/bin/init.rpi3-net.sh                                        u:object_r:goldfish_setup_exec:s0
+
+/vendor/lib/dri/gallium_dri\.so                                     u:object_r:same_process_hal_file:s0
+/vendor/lib/dri/vc4_dri\.so                                         u:object_r:same_process_hal_file:s0
+/vendor/lib/hw/gralloc\.drm\.so                                     u:object_r:same_process_hal_file:s0
+/vendor/lib/hw/hwcomposer\.drm\.so                                  u:object_r:same_process_hal_file:s0
+/vendor/lib/libdrm\.so                                              u:object_r:same_process_hal_file:s0
+/vendor/lib/libglapi\.so                                            u:object_r:same_process_hal_file:s0
+/vendor/lib/libGLES_mesa\.so                                        u:object_r:same_process_hal_file:s0

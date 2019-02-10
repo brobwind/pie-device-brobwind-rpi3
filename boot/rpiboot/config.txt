@@ -1,0 +1,45 @@
+arm_64bit=1
+kernel=u-boot-dtok.bin
+audio_pwm_mode=2
+
+# Prevent the firmware from loading HAT overlays now that we handle pin muxing.
+# ourselves. See:
+# https://www.raspberrypi.org/documentation/configuration/device-tree.md#part3.4
+dtoverlay=
+
+#dtparam=spi=on
+dtparam=audio=on
+
+# pwm and I2S are mutually-exclusive since they share hardware clocks.
+#dtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4
+#dtoverlay=generic-i2s
+
+start_file=start_x.elf
+fixup_file=fixup_x.dat
+
+# Tell U-boot to always use the "serial0" interface for the console, which is
+# set to whichever uart (uart0 or uart1) is set to the header pins. This doesn't
+# interfere with the uart selected for Bluetooth.
+dtoverlay=chosen-serial0
+
+# Enable skip-init on the UART interfaces, so U-Boot doesn't attempt to
+# re-initialize them.
+dtoverlay=rpi-uart-skip-init
+
+# Uncomment to disable serial port on headers, use GPIO14 and GPIO15
+# as gpios and to allow the core_freq to change at runtime.
+enable_uart=1
+core_freq=400
+
+# Set mmc(Micro SD) clock to 84MHz
+dtoverlay=sdtweak,overclock_50=84
+
+# If a display spills off the screen (RPi graphics is larger than monitors),
+# set disable_overscan to 0.
+disable_overscan=1
+
+# Set gpu memory size
+gpu_mem=16
+
+dtoverlay=vc4-kms-v3d,cma-256
+dtoverlay=bcm2710-rpi-3-b-android-fstab

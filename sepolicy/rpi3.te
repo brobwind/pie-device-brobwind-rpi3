@@ -1,0 +1,79 @@
+# adb shell dmesg | audit2allow -p out/target/product/rpi3/root/sepolicy > device/brobwind/rpi3/sepolicy/rpi3.te
+# adb logcat -d | audit2allow -p out/target/product/rpi3/root/sepolicy >> device/brobwind/rpi3/sepolicy/rpi3.te
+
+
+#============= bootanim ==============
+allow bootanim gpu_device:dir { open read };
+allow bootanim sysfs_gpu:file { getattr open read };
+
+#============= hal_bluetooth_rpi3 ==============
+
+#============= hal_bootctl_default ==============
+allow hal_bootctl_default proc_cmdline:file { getattr open read };
+allow hal_bootctl_default sysfs_dt_firmware_android:dir search;
+
+#============= hal_gnss_default ==============
+allow hal_gnss_default vndbinder_device:chr_file map;
+
+#============= hal_graphics_composer_default ==============
+allow hal_graphics_composer_default self:netlink_kobject_uevent_socket read;
+allow hal_graphics_composer_default vndbinder_device:chr_file map;
+
+#============= hal_sensors_default ==============
+allow hal_sensors_default uhid_device:chr_file { ioctl open write };
+
+#============= healthd ==============
+allow healthd self:capability2 wake_alarm;
+
+#============= init ==============
+allow init proc:file setattr;
+
+#============= isolated_app ==============
+allow isolated_app app_data_file:dir getattr;
+allow isolated_app app_data_file:file map;
+
+#============= kernel ==============
+allow kernel device:chr_file { create setattr };
+allow kernel device:dir { add_name create write };
+allow kernel self:capability mknod;
+
+#============= platform_app ==============
+allow platform_app gpu_device:dir { open read };
+allow platform_app sysfs_gpu:file { getattr open read };
+
+#============= priv_app ==============
+allow priv_app gpu_device:dir { open read };
+allow priv_app sysfs_gpu:file { getattr open read };
+
+#============= proc_net ==============
+allow proc_net proc:filesystem associate;
+
+#============= secure_element ==============
+allow secure_element runtime_event_log_tags_file:file map;
+
+#============= surfaceflinger ==============
+allow surfaceflinger gpu_device:dir { open read };
+allow surfaceflinger sysfs_gpu:file { getattr open read };
+
+#============= system_app ==============
+allow system_app gpu_device:dir { open read };
+allow system_app sysfs_gpu:file { getattr open read };
+
+#============= system_server ==============
+allow system_server gpu_device:dir { open read };
+
+#============= untrusted_app ==============
+allow untrusted_app gpu_device:dir { open read };
+allow untrusted_app runtime_event_log_tags_file:file map;
+allow untrusted_app sysfs_gpu:file { getattr open read };
+
+#============= untrusted_app_25 ==============
+allow untrusted_app_25 gpu_device:dir { open read };
+allow untrusted_app_25 runtime_event_log_tags_file:file map;
+allow untrusted_app_25 sysfs_gpu:file { getattr open read };
+
+#============= vendor_init ==============
+allow vendor_init dalvik_prop:property_service set;
+allow vendor_init dhcp_data_file:dir setattr;
+allow vendor_init file_contexts_file:file map;
+allow vendor_init wifi_data_file:dir setattr;

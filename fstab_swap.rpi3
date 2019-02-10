@@ -1,0 +1,2 @@
+/dev/block/zram0                                         none   swap defaults                                           zramsize=134217728
+/dev/block/platform/soc/3f202000.mmc/by-name/swap        none   swap defaults                                           defaults

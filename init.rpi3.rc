@@ -1,0 +1,80 @@
+#
+# Copyright 2018 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+on early-init
+    mount debugfs debugfs /sys/kernel/debug mode=0755
+
+on init
+    # enable all cores for all cpuset during boot
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
+
+    # set default schedTune value for foreground/top-app (only affects EAS)
+    write /dev/stune/foreground/schedtune.prefer_idle 1
+    write /dev/stune/top-app/schedtune.boost 10
+    write /dev/stune/top-app/schedtune.prefer_idle 1
+
+    # Add a cpuset for the camera daemon
+    # We want all cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    write /dev/cpuset/camera-daemon/cpus 0-3
+    write /dev/cpuset/camera-daemon/mems 0
+    chown system system /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon/tasks
+    chmod 0644 /dev/cpuset/camera-daemon/tasks
+
+on fs
+    mount_all /vendor/etc/fstab.${ro.hardware}
+    swapon_all /vendor/etc/fstab_swap.${ro.hardware}
+
+on late-fs
+    start btuart.${ro.boot.board}
+
+on zygote-start
+    # Create the directories used by the Wireless subsystem
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
+    mkdir /data/vendor/wifi 0771 wifi wifi
+    mkdir /data/vendor/wifi/wpa 0770 wifi wifi
+    mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+
+service dhcpcd_wlan0 /system/bin/dhcpcd -dABKL
+    group dhcp
+    disabled
+    oneshot
+
+service btuart.rpi-3-b /vendor/bin/btuart /dev/ttyAMA0 bcm43xx 921600 noflow - ${ro.boot.serialno}
+    user bluetooth
+    group bluetooth net_bt_admin system
+
+service btuart.rpi-3-b-plus /vendor/bin/btuart /dev/ttyAMA0 bcm43xx 3000000 flow - ${ro.boot.serialno}
+    user bluetooth
+    group bluetooth net_bt_admin system
+
+service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
+            -iwlan0 -Dnl80211 -I/vendor/etc/wifi/wpa_supplicant.conf \
+            -O/data/vendor/wifi/wpa/sockets -g@android:wpa_wlan0
+    interface android.hardware.wifi.supplicant@1.0::ISupplicant default
+    interface android.hardware.wifi.supplicant@1.1::ISupplicant default
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot

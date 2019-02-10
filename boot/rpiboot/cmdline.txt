@@ -1,0 +1,1 @@
+dwc_otg.lpm_enable=0 ro rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait earlyprintk init=/init androidboot.hardware=rpi3 androidboot.selinux=permissive skip_initramfs drm_kms_helper.edid_firmware=edid/1280x720.bin
