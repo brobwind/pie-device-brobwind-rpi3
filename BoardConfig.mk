@@ -81,7 +81,7 @@ BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 TARGET_AUX_OS_VARIANT_LIST := neonkey
 
 # Bootimage
-BOARD_KERNEL_CMDLINE     := console=ttyS0,115200 buildvariant=eng
+BOARD_KERNEL_CMDLINE     := console=ttyS0,115200
 BOARD_KERNEL_BASE        := 0x10000000
 BOARD_MKBOOTIMG_ARGS     := --kernel_offset 0x080000 --ramdisk_offset 0x01000000
 BOARD_KERNEL_PAGESIZE    := 2048

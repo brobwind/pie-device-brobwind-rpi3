@@ -27,15 +27,16 @@ RPIBOOT_COPY_FILES += \
 
 RPIBOOT_COPY_FILES += \
     device/brobwind/rpi3/boot/rpiboot/overlays/chosen-serial0.dtbo:overlays/chosen-serial0.dtbo \
-    device/brobwind/rpi3/boot/rpiboot/overlays/rpi-uart-skip-init.dtbo:overlays/rpi-uart-skip-init.dtbo
+    device/brobwind/rpi3/boot/rpiboot/overlays/rpi-uart-skip-init.dtbo:overlays/rpi-uart-skip-init.dtbo \
 
 RPIBOOT_COPY_FILES += \
-    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.77-v8+/broadcom/bcm2710-rpi-3-b.dtb:bcm2710-rpi-3-b.dtb \
-    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.77-v8+/broadcom/bcm2710-rpi-3-b-plus.dtb:bcm2710-rpi-3-b-plus.dtb \
-    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.77-v8+/overlays/bcm2710-rpi-3-b-android-fstab.dtbo:overlays/bcm2710-rpi-3-b-android-fstab.dtbo \
-    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.77-v8+/overlays/pwm-2chan.dtbo:overlays/pwm-2chan.dtbo \
-    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.77-v8+/overlays/sdtweak.dtbo:overlays/sdtweak.dtbo \
-    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.77-v8+/overlays/vc4-kms-v3d.dtbo:overlays/vc4-kms-v3d.dtbo \
+    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.61-v8+/broadcom/bcm2710-rpi-3-b.dtb:bcm2710-rpi-3-b.dtb \
+    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.61-v8+/broadcom/bcm2710-rpi-3-b-plus.dtb:bcm2710-rpi-3-b-plus.dtb \
+    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.61-v8+/overlays/bcm2710-rpi-3-b-android-fstab.dtbo:overlays/bcm2710-rpi-3-b-android-fstab.dtbo \
+    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.61-v8+/overlays/bcm2710-rpi-3-b-cpufreq.dtbo:overlays/bcm2710-rpi-3-b-cpufreq.dtbo \
+    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.61-v8+/overlays/pwm-2chan.dtbo:overlays/pwm-2chan.dtbo \
+    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.61-v8+/overlays/sdtweak.dtbo:overlays/sdtweak.dtbo \
+    device/brobwind/rpi3/boot/kernel-v4.14/dtbs/4.14.61-v8+/overlays/vc4-kms-v3d.dtbo:overlays/vc4-kms-v3d.dtbo \
 
 
 rpibootimage_intermediates := \

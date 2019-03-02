@@ -1,0 +1,5 @@
+u-boot/
+hals/display/drm_hwcomposer/
+hals/display/libdrm/
+hals/display/mesa3d/
+hals/display/minigbm/

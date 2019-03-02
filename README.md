@@ -81,6 +81,25 @@ Then you will get following images in the out/target/product/rpi3 folder:
 4. vendor.img
 5. userdata.img
 
+#### Flash images
+
+1. Flash images to sdcard directly
+
+It requires sgdisk and gdisk to create GPT partition table.
+```bash
+$ sudo OUT=${OUT} device/brobwind/rpi3/boot/create_partition_table.sh /path/to/sdcard
+```
+After executing the command, it will also install following images to sdcard:
+- out/target/product/rpi3/rpiboot.img
+- out/target/product/rpi3/boot.img
+- out/target/product/rpi3/system.img
+- out/target/product/rpi3/vendor.img
+- device/brobwind/rpi3/boot/images/oem\_bootloader\_a.img
+- device/brobwind/rpi3/boot/images/zero\_4k.bin
+
+2. Using fastboot command
+
+Please refer to https://github.com/brobwind/pie-device-brobwind-rpi3-u-boot/blob/pie-device-brobwind-rpi3/README.md
 
 #### For detail info, please refer:
 1. https://www.brobwind.com/archives/1575

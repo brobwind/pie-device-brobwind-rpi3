@@ -39,7 +39,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     Chrome \
-    PieOnPi \
     RPiTool
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -47,3 +46,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.use_partial_updates=0 \
     ro.frp.pst=/dev/block/platform/soc/3f202000.mmc/by-name/frp \
     ro.sf.lcd_density=240 \
+    ro.opengles.version=131072 \

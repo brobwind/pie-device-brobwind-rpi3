@@ -17,7 +17,7 @@
 #ifndef __BDROID_BUILDCFG_H__
 #define __BDROID_BUILDCFG_H__
 
-#define BTM_DEF_LOCAL_NAME   "RPi 3B(+)"
+#define BTM_DEF_LOCAL_NAME   "Raspberry Pi 3"
 #define KERNEL_MISSING_CLOCK_BOOTTIME_ALARM TRUE
 
 #endif
